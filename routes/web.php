@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -19,6 +20,16 @@ Route::middleware('auth')->group(function () {
 });
 Route::middleware(['auth', 'role:administrador'])->group(function () {
     Route::resource('categories', CategoryController::class)->except('show');
+});
+
+// Productos: el administrador y el vendedor pueden consultar la lista
+Route::middleware(['auth', 'role:administrador,vendedor'])->group(function () {
+    Route::get('products', [ProductController::class, 'index'])->name('products.index');
+});
+
+// Productos: solo el administrador crea, edita y elimina
+Route::middleware(['auth', 'role:administrador'])->group(function () {
+    Route::resource('products', ProductController::class)->except(['index', 'show']);
 });
 
 require __DIR__.'/auth.php';
