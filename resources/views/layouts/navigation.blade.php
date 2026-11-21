@@ -15,6 +15,11 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    @if (auth()->user()->isAdmin())
+                    <x-nav-link :href="route('categories.index')" :active="request()->routeIs('categories.*')">
+                        Categorías
+                    </x-nav-link>
+                    @endif
                 </div>
             </div>
 
@@ -83,6 +88,11 @@
                 <x-responsive-nav-link :href="route('profile.edit')">
                     {{ __('Profile') }}
                 </x-responsive-nav-link>
+                @if (auth()->user()->isAdmin())
+                <x-responsive-nav-link :href="route('categories.index')" :active="request()->routeIs('categories.*')">
+                    Categorías
+                </x-responsive-nav-link>
+                @endif
 
                 <!-- Authentication -->
                 <form method="POST" action="{{ route('logout') }}">
