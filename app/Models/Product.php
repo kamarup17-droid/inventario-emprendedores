@@ -50,5 +50,9 @@ class Product extends Model
     {
         return $query->whereColumn('stock', '<=', 'min_stock');
     }
+        public function getPhotoUrlAttribute(): ?string
+    {
+        return $this->photo ? asset('storage/' . $this->photo) : null;
+    }
 
 }

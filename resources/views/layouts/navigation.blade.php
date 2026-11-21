@@ -15,6 +15,11 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+
+                    <x-nav-link :href="route('products.index')" :active="request()->routeIs('products.*')">
+                        Productos
+                    </x-nav-link>
+                    
                     @if (auth()->user()->isAdmin())
                     <x-nav-link :href="route('categories.index')" :active="request()->routeIs('categories.*')">
                         Categorías
