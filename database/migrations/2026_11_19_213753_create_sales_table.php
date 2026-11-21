@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('customer_name', 150)->nullable();
             $table->enum('payment_method', ['efectivo', 'transferencia', 'tarjeta']);
             $table->decimal('total', 12, 2);
-    $table->timestamps();
+            $table->timestamps();
         });
     }
 
